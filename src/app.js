@@ -1,6 +1,7 @@
 const path = require('path');
 const SwaggerHapi = require('swagger-hapi');
 const Hapi = require('hapi');
+const _ = require('lodash');
 
 const port = process.env.PORT || 10010;
 
@@ -24,6 +25,15 @@ const hapiLogger = {
 };
 
 const app = new Hapi.Server();
+const models = require('./api/models');
+const collections = require('./api/collections');
+
+global.models = models;
+global.collections = {};
+
+_.each(collections, (Collection) => {
+  global.collections[Collection.name] = new Collection();
+});
 
 SwaggerHapi.create(swaggerConfig, (err, swaggerHapi) => {
   if (err) {
