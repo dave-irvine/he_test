@@ -1,0 +1,15 @@
+# describe the structure of a User when fetched from the system
+# we have all the fields from creating a User, plus the id and create time
+allOf:
+  - $ref: '../swagger.yaml#/definitions/UserInput'
+type: object
+required:
+ - id
+ - created
+properties:
+  id:
+    type: integer
+    format: int32
+  created:
+    type: string
+    format: date-time

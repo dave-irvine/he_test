@@ -1,0 +1,6 @@
+UserInput:
+  $ref: ./UserInput.yaml
+UserOutput:
+  $ref: ./UserOutput.yaml
+UserPatch:
+  $ref: ./UserPatch.yaml

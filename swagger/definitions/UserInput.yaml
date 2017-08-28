@@ -1,0 +1,16 @@
+# Provide all the fields required to create a new User
+# we don't require an ID because this is generated
+# we don't require a create time because this is generated
+type: object
+required:
+ - email
+ - forename
+ - surname
+properties:
+  email:
+    type: string
+    format: email
+  forename:
+    type: string
+  surname:
+    type: string

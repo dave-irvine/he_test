@@ -1,0 +1,95 @@
+/user:
+  x-swagger-router-controller: User
+  get:
+    tags:
+      - user
+    description: Returns list of users
+    operationId: list
+    responses:
+      "200":
+        description: Success
+        schema:
+          type: array
+          items:
+            $ref: "../swagger.yaml#/definitions/UserOutput"
+  post:
+    tags:
+      - user
+    description: Create a new User
+    operationId: create
+    parameters:
+      - in: body
+        name: user
+        description: User object to be created
+        required: true
+        schema:
+          $ref: "../swagger.yaml#/definitions/UserInput"
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "../swagger.yaml#/definitions/UserOutput"
+/user/{userId}:
+  x-swagger-router-controller: User
+  get:
+    tags:
+      - user
+    description: Returns a user with the given ID
+    operationId: get
+    parameters:
+      - in: path
+        name: userId
+        type: integer
+        format: int32
+        required: true
+        description: ID of the user to get
+        x-example: 1
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "../swagger.yaml#/definitions/UserOutput"
+  put:
+    tags:
+      - user
+    description: Update a User with the given ID
+    operationId: update
+    parameters:
+      - in: path
+        name: userId
+        type: integer
+        format: int32
+        required: true
+        description: ID of the User to update
+        x-example: 1
+      - in: body
+        name: user
+        description: An object containing fields to be updated
+        required: true
+        schema:
+          $ref: "../swagger.yaml#/definitions/UserPatch"
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "../swagger.yaml#/definitions/UserOutput"
+  delete:
+    tags:
+      - user
+    description: Delete a User
+    operationId: destroy
+    parameters:
+      - in: path
+        name: userId
+        type: integer
+        format: int32
+        required: true
+        description: ID of the User to delete
+        x-example: 1
+    responses:
+      "200":
+        description: success
+        schema:
+          properties:
+            message:
+              type: string

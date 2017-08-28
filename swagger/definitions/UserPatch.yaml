@@ -1,0 +1,12 @@
+# Describe which fields of the User can be patched
+# None of these are required because any field can be patched independently of the others
+# id and create time are not patchable
+type: object
+properties:
+  email:
+    type: string
+    format: email
+  forename:
+    type: string
+  surname:
+    type: string
