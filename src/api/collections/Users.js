@@ -6,13 +6,9 @@ class Users {
     this.lastID = 0;
   }
 
-  nextID() {
-    return this.lastID + 1;
-  }
-
   store(instance) {
-    this.users[this.nextID()] = instance;
-    this.lastID++;
+    instance.id = ++this.lastID;
+    this.users[instance.id] = instance;
   }
 
   list() {
