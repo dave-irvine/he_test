@@ -1,1 +1,2 @@
- - $ref: ./User.yaml
+- $ref: ./User.yaml
+- $ref: ./Swagger.yaml
