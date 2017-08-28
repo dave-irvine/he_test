@@ -1,5 +1,15 @@
+const _ = require('lodash');
+
+const Model = global.models['User'];
+const Collection = global.collections['Users'];
+
 function create(req, res) {
-  res.end('create()');
+  const userDetails = req.swagger.params.user.value;
+  const user = new Model(userDetails);
+
+  Collection.store(user);
+
+  res.json(user.toJSON());
 };
 
 function destroy(req, res) {
@@ -11,7 +21,13 @@ function get(req, res) {
 };
 
 function list(req, res) {
-  res.end('list()');
+  const users = Collection.list();
+
+  const usersJSON = _.map(users, (user) => {
+    return user.toJSON();
+  });
+
+  res.json(usersJSON);
 };
 
 function update(req, res) {
