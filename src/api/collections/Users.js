@@ -18,6 +18,18 @@ class Users {
   list() {
     return this.users;
   }
+
+  fetch(userId) {
+    return this.users[userId];
+  }
+
+  destroy(userId) {
+    delete this.users[userId];
+  }
+
+  update(userId, user) {
+    this.users[userId] = user;
+  }
 }
 
 module.exports = Users;

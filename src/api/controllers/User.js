@@ -13,11 +13,28 @@ function create(req, res) {
 };
 
 function destroy(req, res) {
-  res.end('destroy()');
+  const userId = req.swagger.params.userId.value;
+  const user = Collection.fetch(userId);
+
+  if (user) {
+    Collection.destroy(userId);
+    res.end('User removed.');
+  } else {
+    res.statusCode = 404;
+    res.end('No such user.');
+  }
 };
 
 function get(req, res) {
-  res.end('get()');
+  const userId = req.swagger.params.userId.value;
+  const user = Collection.fetch(userId);
+
+  if (user) {
+    res.json(user.toJSON());
+  } else {
+    res.statusCode = 404;
+    res.end('No such user.');
+  }
 };
 
 function list(req, res) {
@@ -31,7 +48,15 @@ function list(req, res) {
 };
 
 function update(req, res) {
-  res.end('update()');
+  const userDetails = req.swagger.params.user.value;
+  const userId = req.swagger.params.userId.value;
+  const user = Collection.fetch(userId);
+
+  Object.assign(user, userDetails);
+
+  Collection.update(userId, user);
+
+  res.json(user.toJSON());
 };
 
 module.exports = {
